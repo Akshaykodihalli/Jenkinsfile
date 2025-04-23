@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+
+        stage('Test') {
+            when {
+                branch 'main'  // only runs this stage on main branch
+            }
+            steps {
+                echo 'Running tests on main branch...'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                expression {
+                    return env.BUILD_NUMBER.toInteger() % 2 == 0  // only deploy on even build numbers
+                }
+            }
+            steps {
+                echo "Deploying (even build number: ${env.BUILD_NUMBER})"
+            }
+        }
+    }
+}
