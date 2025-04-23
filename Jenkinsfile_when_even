@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -10,7 +11,9 @@ pipeline {
 
         stage('Test') {
             when {
-                branch 'main'  // only runs this stage on main branch
+                expression {
+                    return main
+                }  // only runs this stage on main branch
             }
             steps {
                 echo 'Running tests on main branch...'
