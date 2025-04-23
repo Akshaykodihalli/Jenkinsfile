@@ -7,11 +7,10 @@ pipeline {
     }
 
     stages {
-        stage('CHECKOUT') {
+        stage('CLONE') {
             steps {
                 git branch: params.BRNACH,
-                    credentialsId: 'github_id',
-                    url: 'https://github.com/jaintpharsha/k8s-ip-app.git'
+                    git branch: 'main', credentialsId: 'git_token', url: 'https://github.com/Akshaykodihalli/Jenkinsfile.git'
             }
         }
 
