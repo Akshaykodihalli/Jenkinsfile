@@ -10,11 +10,9 @@ pipeline {
         }
 
         stage('Test') {
-            when {
-                expression {
-                    return main
-                }  // only runs this stage on main branch
-            }
+
+
+            
             steps {
                 echo 'Running tests on main branch...'
             }
