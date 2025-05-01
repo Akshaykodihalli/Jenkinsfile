@@ -2,13 +2,17 @@ pipeline {
     agent any
 
     options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '5')) 
+    }
+
+    triggers {
+        cron('H/5 * * * *')  
     }
 
     stages {
-        stage('Build') {
+        stage('Example') {
             steps {
-                echo "This is build number ${env.BUILD_NUMBER}"
+                echo "Running every 5 minutes... build #${env.BUILD_NUMBER}"
             }
         }
     }
