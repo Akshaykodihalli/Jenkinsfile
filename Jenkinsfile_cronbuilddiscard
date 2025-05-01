@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "This is build number ${env.BUILD_NUMBER}"
+            }
+        }
+    }
+}
